@@ -1,19 +1,26 @@
-package com.example.test
+package  com.example.test.view
 
 import android.annotation.SuppressLint
-import android.graphics.Paint
+import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.test.R
+import com.example.test.domain.ToDoModel
 import kotlinx.android.synthetic.main.item_todo.view.*
 
-class FullscreenFragment(
-    private val todos: MutableList<Todo>
+
+class TodoAdapter(
+    private val todos: MutableList<ToDoModel>
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoAdapter.TodoViewHolder {
-        return TodoAdapter.TodoViewHolder(
+    class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
+        return TodoViewHolder(
             LayoutInflater.from(parent.context).inflate(
                 R.layout.item_todo,
                 parent,
@@ -22,7 +29,7 @@ class FullscreenFragment(
         )
     }
 
-    fun addTodo(todo: Todo) {
+    fun addTodo(todo: ToDoModel) {
         todos.add(todo)
         notifyItemInserted(todos.size - 1)
     }
@@ -37,19 +44,16 @@ class FullscreenFragment(
 
     private fun toggleStrikeThrough(tvTodoTitle: TextView, isChecked: Boolean) {
         if (isChecked) {
-            tvTodoTitle.paintFlags = tvTodoTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            tvTodoTitle.paintFlags = tvTodoTitle.paintFlags or STRIKE_THRU_TEXT_FLAG
         } else {
-            tvTodoTitle.paintFlags = tvTodoTitle.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+            tvTodoTitle.paintFlags = tvTodoTitle.paintFlags and STRIKE_THRU_TEXT_FLAG.inv()
         }
     }
 
-    override fun getItemCount(): Int {
-        return todos.size
-    }
-
-    override fun onBindViewHolder(holder: TodoAdapter.TodoViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val curTodo = todos[position]
         holder.itemView.apply {
+
             tvTodoTitle.text = curTodo.title
             cbDone.isChecked = curTodo.isChecked
             toggleStrikeThrough(tvTodoTitle, curTodo.isChecked)
@@ -58,5 +62,9 @@ class FullscreenFragment(
                 curTodo.isChecked = !curTodo.isChecked
             }
         }
+    }
+
+    override fun getItemCount(): Int {
+        return todos.size
     }
 }
