@@ -2,33 +2,37 @@ package com.example.test.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.test.data.CheckListRemoteDataSource
-import com.example.test.data.CheckListRemoteDataSourceFake
-import com.example.test.data.ToDoRemoteDataSource
-import com.example.test.data.ToDoRemoteDataSourceFake
-import com.example.test.domain.CheckListModel
+import com.example.test.data.room.db.Repository
+import com.example.test.domain.CheckListWithToDo
 import com.example.test.domain.ToDoModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ToDoViewModel : ViewModel() {
+class ToDoViewModel(private val repository: Repository) : ViewModel() {
 
-    private val toDoRemoteDataSource: ToDoRemoteDataSource = ToDoRemoteDataSourceFake()
+    private val _stateToDo = MutableStateFlow<Result<CheckListWithToDo>?>(null)
+    val stateToDo: StateFlow<Result<CheckListWithToDo>?> = _stateToDo
 
-    private val _stateToDo = MutableStateFlow<Result<MutableList<ToDoModel>>?>(null)
-    val stateToDo: StateFlow<Result<MutableList<ToDoModel>>?> = _stateToDo
-
-    fun loadToDoData() {
+    fun loadToDoData(checkListId: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             val result = try {
-                Result.success(toDoRemoteDataSource.getItemToDo())
+                val toDos: CheckListWithToDo = repository.getToDos(checkListId)
+                Result.success(toDos)
+
             } catch (t: Throwable) {
                 Result.failure(t)
             }
             _stateToDo.emit(result)
         }
+    }
 
+    suspend fun saveToDoData(toDo: ToDoModel) {
+        repository.saveToDo(toDo)
+    }
+
+    suspend fun deleteToDosByIds(toDos: List<Long>) {
+        repository.deleteToDosByIds(toDos)
     }
 }

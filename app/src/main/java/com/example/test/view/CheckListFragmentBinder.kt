@@ -31,10 +31,4 @@ class CheckListFragmentBinder(
         binding.recyclerView.visibility = View.VISIBLE
         binding.recyclerView.adapter = CheckListAdapter(list, onItemClick)
     }
-
-    fun showProgress() {
-        binding.progressBar.visibility = View.VISIBLE
-        binding.recyclerView.visibility = View.GONE
-
-    }
 }

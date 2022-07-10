@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.databinding.ToDoFragmentBinding
+import com.example.test.domain.CheckListWithToDo
 import com.example.test.domain.ToDoModel
 
 class ToDoFragmentBinder(
     private val fragment: Fragment,
     private val onItemClick: (View, ToDoModel) -> Unit
 ) {
+
     private lateinit var binding: ToDoFragmentBinding
+
     fun bindView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,13 +29,7 @@ class ToDoFragmentBinder(
         return binding.root
     }
 
-    fun applyAdapter(list: MutableList<ToDoModel>) {
+    fun applyAdapter(list: CheckListWithToDo) {
         binding.rvTodoItems.visibility = View.VISIBLE
-    }
-
-    fun showProgress() {
-
-        binding.rvTodoItems.visibility = View.GONE
-
     }
 }

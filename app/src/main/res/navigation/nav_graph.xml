@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/postsFragment">
+    app:startDestination="@id/checkListFragment">
 
     <fragment
-        android:id="@+id/postsFragment"
+        android:id="@+id/checkListFragment"
         android:name="com.example.test.view.CheckListFragment"
         android:label="Списки"
         tools:layout="@layout/check_list_fragment">
         <action
-            android:id="@+id/action_postsFragment_to_fullscreenFragment"
+            android:id="@+id/action_checkListFragment_to_toDoFragment"
             app:destination="@id/toDoFragment"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
@@ -37,7 +37,7 @@
             android:name="post"
             app:argType="com.example.test.domain.CheckListModel" />
         <action
-            android:id="@+id/action_fullscreenFragment_to_postsFragment"
-            app:destination="@id/postsFragment" />
+            android:id="@+id/action_toDoFragment_to_checkListFragment"
+            app:destination="@id/checkListFragment" />
     </fragment>
 </navigation>
