@@ -2,16 +2,14 @@
 buildscript {
     ext.kotlin_version = '1.6.20'
     repositories {
-        jcenter()
         mavenCentral()
         google()
     }
     dependencies {
         def nav_version = "2.4.2"
         classpath "org.jetbrains.kotlin:kotlin-serialization:1.6.21"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.4.2"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
-       // classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 plugins {

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:paddingStart="5dp"
     android:paddingEnd="5dp">
 
@@ -10,21 +11,21 @@
         android:id="@+id/tvTodoTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
         android:text="Example"
-        android:textColor="#8E39C2"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
+        tools:fontFamily="@font/aclonica"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/cbDone"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxDone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/cbDone"
+        android:id="@+id/checkBoxDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:outlineAmbientShadowColor="#7324A4"
+        android:outlineAmbientShadowColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -13,8 +13,16 @@
         <entry key="..\:/Users/Hp/AndroidStudioProjects/Test/app/src/main/res/layout/item_todo.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/Test/app/src/main/res/layout/main_activity.xml" value="1.525" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/Test/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/font/aclonica.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/check_list_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/fullscreen_post_fragment.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/item_check_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/item_post.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/item_todo.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/main_activity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/posts_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hp/AndroidStudioProjects/ToDoList/app/src/main/res/layout/to_do_fragment.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

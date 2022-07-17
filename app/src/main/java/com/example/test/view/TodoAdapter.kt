@@ -1,4 +1,4 @@
-package com.example.test
+package  com.example.test.view
 
 import android.annotation.SuppressLint
 import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.test.R
+import com.example.test.domain.ToDoModel
 import kotlinx.android.synthetic.main.item_todo.view.*
 
 
 class TodoAdapter(
-    private val todos: MutableList<Todo>
+    private val todos: MutableList<ToDoModel>
 ) : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -26,17 +28,19 @@ class TodoAdapter(
         )
     }
 
-    fun addTodo(todo: Todo) {
+    fun addTodo(todo: ToDoModel) {
         todos.add(todo)
         notifyItemInserted(todos.size - 1)
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun deleteDoneTodos() {
-        todos.removeAll { todo ->
-            todo.isChecked
-        }
+    fun deleteDoneTodos(): List<Long> {
+        val removableToDos = todos.filter { todo -> todo.isChecked }
+
+        val list = removableToDos.map { todo -> todo.id }
+        todos.removeAll(removableToDos)
         notifyDataSetChanged()
+        return list
     }
 
     private fun toggleStrikeThrough(tvTodoTitle: TextView, isChecked: Boolean) {
@@ -48,14 +52,15 @@ class TodoAdapter(
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val curTodo = todos[position]
+        val currentTodo = todos[position]
         holder.itemView.apply {
-            tvTodoTitle.text = curTodo.title
-            cbDone.isChecked = curTodo.isChecked
-            toggleStrikeThrough(tvTodoTitle, curTodo.isChecked)
-            cbDone.setOnCheckedChangeListener { _, isChecked ->
+            tvTodoTitle.text = currentTodo.title
+            checkBoxDone.isChecked = currentTodo.isChecked
+            toggleStrikeThrough(tvTodoTitle, currentTodo.isChecked)
+            checkBoxDone.setOnCheckedChangeListener { _, isChecked ->
                 toggleStrikeThrough(tvTodoTitle, isChecked)
-                curTodo.isChecked = !curTodo.isChecked
+                currentTodo.isChecked = !currentTodo.isChecked
+
             }
         }
     }
